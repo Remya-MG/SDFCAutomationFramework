@@ -23,6 +23,8 @@ public class LoginTest extends BaseTest{
 	
 	@Test
 	public void loginErrorMessageTC01() throws FileNotFoundException, IOException {
+		
+		final String assertMessage = "The actual and expected usernames should be same";
 		WebDriver driver = getBrowser();
 		LoginPage lp = new LoginPage(driver);
 		driver.navigate().to(FileUtils.readLoginPropertiesFile("prod.url"));
@@ -30,7 +32,7 @@ public class LoginTest extends BaseTest{
 		lp.enterUsername(FileUtils.readLoginPropertiesFile("valid.username"));
 		
 		String actualUserName = lp.getValueAttribute(lp.userName);
-		Assert.assertEquals(expectedUserName, actualUserName, "The actual and expected usernames should be same");
+		Assert.assertEquals(expectedUserName, actualUserName,assertMessage );
 		lp.password.clear();
 		String actualPassword = lp.getValueAttribute(lp.password);
 		Assert.assertEquals("", actualPassword, "The actual and expected passwords should be same");
